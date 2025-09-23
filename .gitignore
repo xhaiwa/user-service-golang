@@ -1,0 +1,30 @@
+# Binaries
+/bin/
+/build/
+/dist/
+/user-service
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Go modules
+/go.sum
+/go.mod
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.out
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+
+# Docker
+docker-compose.override.yml
+
+# Environment variables
+.env
