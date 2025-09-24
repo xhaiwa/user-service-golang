@@ -9,7 +9,7 @@ import (
 	"github.com/xhaiwa/user-service-golang/internal/handler"
 )
 
-func TestHealthCheck(t *testing.T) {
+func TestHealthHandler(t *testing.T) {
 	r := gin.Default()
 	r.GET("/health", handler.HealthHandler)
 
