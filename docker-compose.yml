@@ -3,12 +3,15 @@ services:
     build: .
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=users_db
       - DB_PORT=5432
+      - JWT_SECRET=973283fdd8522ce59e740d344d1db83b36922e9ae3570aab13b62b7abf5b2f19
     depends_on:
       - postgres
 

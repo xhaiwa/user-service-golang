@@ -26,6 +26,7 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/health", handler.HealthCheck)
+	r.POST("/signup", handler.SignupHandler(db))
 
 	r.Run(":8080")
 }
