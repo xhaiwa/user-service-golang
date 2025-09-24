@@ -18,11 +18,17 @@ jobs:
         with:
           go-version: "1.25.x"
 
+      - name: Move to project folder
+        working-directory: ./user-service
+        run: pwd
+
       - name: Install dependencies
+        working-directory: ./user-service
         run: go mod tidy
 
-      - name: Run unit + integration tests
-        run: go test ./internal/... ./test/... -v -coverprofile=coverage.out
+      - name: Run tests
+        working-directory: ./user-service
+        run: go test ./... -v -coverprofile=coverage.out
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
