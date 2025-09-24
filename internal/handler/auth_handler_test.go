@@ -23,6 +23,8 @@ func TestSignupHandler(t *testing.T) {
 	db, err := repository.ConnectDB()
 	assert.NoError(t, err)
 
+	db.AutoMigrate(&models.User{})
+
 	// nettoyer DB avant test
 	db.Exec("DELETE FROM users")
 
