@@ -45,14 +45,14 @@ docker-compose up -d
 ## Health Check
 
 ```bash
-curl http://localhost:8080/hello
+curl http://localhost:8080/health
 ```
 
 Expected response:
 
 ```json
 {
-  "message": "hello"
+  "status": "ok"
 }
 ```
 
@@ -67,3 +67,4 @@ Notes
 - Environment variables (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) are defined in docker-compose.yml.
 
 - The service is ready to be extended with JWT, OAuth2, and user CRUD endpoints.
+
