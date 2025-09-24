@@ -4,10 +4,18 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/xhaiwa/user-service-golang/internal/repository"
 )
 
-func HealthHandler(c *gin.Context) {
+func HealthCheck(c *gin.Context) {
+	_, err := repository.ConnectDB()
+	dbStatus := "ok"
+	if err != nil {
+		dbStatus = "error: " + err.Error()
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"status": "ok",
+		"status": "User Service is running",
+		"db":     dbStatus,
 	})
 }

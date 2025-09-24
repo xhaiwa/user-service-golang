@@ -9,7 +9,7 @@ import (
 func main() {
 	r := gin.Default()
 
-	r.GET("/health", handler.HealthHandler)
+	r.GET("/health", handler.HealthCheck)
 
 	r.Run(":8080")
 }

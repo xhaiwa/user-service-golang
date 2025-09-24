@@ -5,19 +5,30 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gin-gonic/gin"
 	"github.com/xhaiwa/user-service-golang/internal/handler"
+
+	"github.com/gin-gonic/gin"
 )
 
-func TestHealthHandler(t *testing.T) {
-	r := gin.Default()
-	r.GET("/health", handler.HealthHandler)
+func TestHealthCheckHandler(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	router := gin.Default()
+	router.GET("/health", handler.HealthCheck)
 
 	req, _ := http.NewRequest("GET", "/health", nil)
 	w := httptest.NewRecorder()
-	r.ServeHTTP(w, req)
+	router.ServeHTTP(w, req)
 
 	if w.Code != http.StatusOK {
-		t.Errorf("Expected 200, got %d", w.Code)
+		t.Fatalf("Expected status 200, got %d", w.Code)
 	}
+
+	expectedBody := `"status":"User Service is running"`
+	if !contains(w.Body.String(), expectedBody) {
+		t.Errorf("Expected body to contain %s, got %s", expectedBody, w.Body.String())
+	}
+}
+
+func contains(s, substr string) bool {
+	return len(s) >= len(substr) && (s == substr || len(s) > len(substr) && (s[:len(substr)] == substr || contains(s[1:], substr)))
 }
