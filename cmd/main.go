@@ -1,19 +1,15 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+
+	"github.com/xhaiwa/user-service-golang/internal/handler"
 )
 
 func main() {
-	router := gin.Default()
+	r := gin.Default()
 
-	router.GET("/hello", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "hello",
-		})
-	})
+	r.GET("/health", handler.HealthHandler)
 
-	router.Run(":8080")
+	r.Run(":8080")
 }
