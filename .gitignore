@@ -8,10 +8,6 @@
 .DS_Store
 Thumbs.db
 
-# Go modules
-/go.sum
-/go.mod
-
 # Logs and temp files
 *.log
 *.tmp
