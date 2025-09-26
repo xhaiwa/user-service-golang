@@ -25,10 +25,13 @@ func main() {
 
 	r := gin.Default()
 
-	r.GET("/health", handler.HealthCheck)
-	r.POST("/signup", handler.SignupHandler(db))
+	{
+		v1 := r.Group("/v1")
 
-	r.GET("/users/:id", handler.GetUserByIdHandler)
+		v1.GET("/health", handler.HealthCheck)
+		v1.POST("/signup", handler.SignupHandler(db))
+		v1.GET("/users/:id", handler.GetUserByIdHandler)
+	}
 
 	r.Run(":8080")
 }
