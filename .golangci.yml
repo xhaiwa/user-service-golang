@@ -1,13 +1,6 @@
-version: "2"
+version: "2.0"
 
-run:
-  timeout: 5m
-  tests: true
-  skip-dirs:
-    - vendor
-  skip-files:
-    - ".*_gen.go"
-
+# Liste des linters activés
 linters:
   enable:
     - govet
@@ -21,10 +14,23 @@ linters:
     - unparam
     - unused
     - revive
-  disable:
-    - maligned
-    - lll
 
+# Répertoires et fichiers à exclure
+exclude-dirs:
+  - vendor
+exclude-files:
+  - ".*_gen.go"
+
+# Exclure certaines règles
+exclude-rules:
+  - linters:
+      - errcheck
+    text: "Error return value is not checked.*(Close|Write|Flush).*"
+  - linters:
+      - golint
+    text: "should have comment or be unexported"
+
+# Paramètres spécifiques à certains linters
 linters-settings:
   revive:
     severity: warning
@@ -33,17 +39,3 @@ linters-settings:
     disabled-checks:
       - commentFormatting
       - hugeParam
-
-issues:
-  exclude-use-default: false
-  max-issues-per-linter: 0
-  max-same-issues: 0
-  exclude:
-    - "Error return value is not checked.*(Close|Write|Flush).*"
-    - "should have comment or be unexported"
-
-formatters:
-  enable:
-    - govet
-    - gofmt
-    - goimports
