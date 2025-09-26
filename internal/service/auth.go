@@ -49,9 +49,12 @@ func Signup(db *gorm.DB, email, password string) (*models.User, string, error) {
 		return nil, "", err
 	}
 
+	var oauthID *string = nil
 	user := models.User{
-		Email:    email,
-		Password: hashed,
+		Email:         email,
+		Password:      hashed,
+		OAuthID:       oauthID,
+		OAuthProvider: nil,
 	}
 
 	if err := db.Create(&user).Error; err != nil {

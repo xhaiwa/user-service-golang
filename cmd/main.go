@@ -30,7 +30,7 @@ func main() {
 
 		v1.GET("/health", handler.HealthCheck)
 		v1.POST("/signup", handler.SignupHandler(db))
-		v1.GET("/users/:id", handler.GetUserByIdHandler)
+		v1.GET("/users/:id", handler.GetUserByIdHandler(db))
 	}
 
 	r.Run(":8080")

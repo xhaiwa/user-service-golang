@@ -13,6 +13,6 @@ type User struct {
 	CreatedAt     time.Time      `json:"created_at"`
 	UpdatedAt     time.Time      `json:"updated_at"`
 	DeletedAt     gorm.DeletedAt `gorm:"index" json:"deleted_at,omitempty"` // soft delete
-	OAuthID       string         `gorm:"uniqueIndex;null" json:"oauth_id,omitempty"`
-	OAuthProvider string         `json:"oauth_provider,omitempty"` // "google", "facebook", etc.
+	OAuthID       *string        `gorm:"uniqueIndex" json:"oauth_id,omitempty"`
+	OAuthProvider *string        `json:"oauth_provider,omitempty"`
 }
