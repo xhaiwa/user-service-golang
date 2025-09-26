@@ -106,6 +106,7 @@ linters:
     - testableexamples
     - testifylint
     - testpackage
+    - typecheck
     - thelper
     - tparallel
     - unconvert
