@@ -7,15 +7,8 @@ import (
 	"github.com/xhaiwa/user-service-golang/internal/repository"
 	"github.com/xhaiwa/user-service-golang/internal/repository/models"
 	"github.com/xhaiwa/user-service-golang/internal/utils"
-	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
-
-// CheckPassword compare le hash et le mot de passe
-func CheckPassword(hash, password string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
-}
 
 // CreateJWT génère un token JWT
 func CreateJWT(userID uint) (string, error) {
