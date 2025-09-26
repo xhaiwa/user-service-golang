@@ -11,21 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      # 1️⃣ Récupération du code
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.21
+      # 2️⃣ Installation de la bonne version de Go
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.25.1
 
-    - name: Download dependencies
-      run: go mod download
+      # 3️⃣ Téléchargement des dépendances
+      - name: Download dependencies
+        run: go mod download
 
-    - name: Install golangci-lint
-      run: |
-        curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.53.3
-        export PATH=$(go env GOPATH)/bin:$PATH
+      # 4️⃣ Installation de golangci-lint
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.3
 
-    - name: Run golangci-lint
-      run: golangci-lint run ./...
+      # 5️⃣ Exécution du linter
+      - name: Run golangci-lint
+        run: golangci-lint run ./...
