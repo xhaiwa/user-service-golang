@@ -20,20 +20,10 @@ linters:
     - gosimple
     - unparam
     - unused
-    - structcheck
-    - typecheck
-    - varcheck
     - revive
   disable:
-    - deadcode
     - maligned
     - lll
-  exclusions:
-    generated: lax
-    paths:
-      - third_party$
-      - builtin$
-      - examples$
 
 linters-settings:
   revive:
