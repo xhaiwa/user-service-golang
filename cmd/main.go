@@ -28,5 +28,7 @@ func main() {
 	r.GET("/health", handler.HealthCheck)
 	r.POST("/signup", handler.SignupHandler(db))
 
+	r.GET("/users/:id", handler.GetUserByIdHandler)
+
 	r.Run(":8080")
 }
