@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 version: "2"
+=======
+run:
+  timeout: 5m
+  tests: true
+  skip-dirs:
+    - vendor
+  skip-files:
+    - ".*_gen.go"
+
+>>>>>>> 70453a55d2ebdc159f895f1223ce128f2ce15a08
 linters:
   exclusions:
     generated: lax
@@ -8,6 +19,7 @@ linters:
       - examples$
 formatters:
   enable:
+<<<<<<< HEAD
     - gofmt
     - goimports
   exclusions:
@@ -16,3 +28,40 @@ formatters:
       - third_party$
       - builtin$
       - examples$
+=======
+    - govet
+    - errcheck
+    - staticcheck
+    - gofmt
+    - goimports
+    - ineffassign
+    - gocritic
+    - gosimple
+    - unparam
+    - unused
+    - structcheck
+    - typecheck
+    - varcheck
+    - revive
+  disable:
+    - deadcode       # remplacé par unused
+    - maligned       # optionnel, parfois trop strict
+    - lll            # line length checker, selon tes préférences
+
+linters-settings:
+  revive:
+    severity: warning
+    ignoreGeneratedHeader: true
+  gocritic:
+    disabled-checks:
+      - commentFormatting
+      - hugeParam
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude:
+    - "Error return value is not checked.*(Close|Write|Flush).*"
+    - "should have comment or be unexported"
+>>>>>>> 70453a55d2ebdc159f895f1223ce128f2ce15a08
