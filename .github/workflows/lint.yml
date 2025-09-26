@@ -18,6 +18,9 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version: 1.25.1
+          
+      - name: Ensure code builds
+        run: go build ./...
 
       # 3️⃣ Linter officiel golangci-lint
       - name: Run golangci-lint with auto-fix
